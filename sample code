@@ -1,0 +1,27 @@
+# sample code, details removed because code was written as part of a class
+# Given a boolean expression, solve and return a dictionary containing each variable and if they're True/False. 
+
+    results = {}
+    def solve(formula):
+        # behavior if the formula is empty or contains contradictions. 
+        
+        # search for and find smaller expressions to simplify
+    
+        updated = update(formula, v, True) # update the formula assuming True
+        test = solve(updated) # check to see if it solves
+    
+        if test != None: # if no contradiction, update the dictionary and return it
+            results[v] = True
+            return results
+             
+        updated = update(formula, v, False) # at this stage, True didn't work, so guess False
+        test = solve(updated) 
+        
+        if test != None:
+            results[v] = False
+            return results
+     
+        return None # if here, means that neither True or False worked 
+    
+    if solve(formula) != None:
+        return solve(formula)
